@@ -17,15 +17,16 @@
         <%= link_to "Log out", destroy_user_session_path, method: :delete %>
       </li>
     <% else %>
-      
      
       <li>
         <%= link_to "Log in", new_user_session_path %>
       </li>
     <% end %>
     
-    <h1>User info</h1>
-<!--%= image_tag 'sample-author1.jpg' %-->
+    <li>
+      <%= link_to 'Home', user_path(current_user.id) %>
+    </li>
+    
   </header>
     <%= yield %>
   </body>

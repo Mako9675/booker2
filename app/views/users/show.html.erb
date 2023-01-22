@@ -1,8 +1,8 @@
 <h1>User info</h1>
 <% if @user.profile_image.attached? %>
-  <%= image_tag @user.get_profile_image(resize_to_limit: [100,100]) %>
+  <%= image_tag @user.get_profile_image(100,100) %>
 <% else %>
-  <%= image_tag 'no_image', size: "100×100" %>
+  <%= image_tag 'no_image',resize_to_limit: [100,100] %>
 <% end %>
 
 <tr>
@@ -25,12 +25,15 @@
       <th>Opinion</th>
     </tr>
     <tr>
-      <td><%= image_tag @user.get_profile_image(100,100) %></td>
+      <% @books.each do |book| %>
+      <td><%= image_tag book.user.get_profile_image(100,100) %></td>
       <td>
-        <%= link_to book_path do %>
-          <%= book.title %>
+        <%= link_to book_path(book.id) do %>
+        <%= book.title %>
         <% end %>
       </td>
       <td><%= book.body %></td>
     </tr>
+    
+    <% end %>
   </table>

@@ -1,7 +1,8 @@
 <h1>Books detail</h1>
   
   <table>
-    <td><%= link_to current_user.name, books_path(current_user) %></td>
+    
+    <td><%= link_to current_user.name, user_path %></td>
     <td>
       <%= link_to book_path(@book.id) do %>
         <%= @book.title %>

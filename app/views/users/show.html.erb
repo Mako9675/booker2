@@ -1,0 +1,36 @@
+<h1>User info</h1>
+<% if @user.profile_image.attached? %>
+  <%= image_tag @user.get_profile_image(resize_to_limit: [100,100]) %>
+<% else %>
+  <%= image_tag 'no_image', size: "100×100" %>
+<% end %>
+
+<tr>
+  <th>name</th>
+  <th><%= current_user.name %></th>
+</tr>
+<tr>
+  <th>introduction</th>
+  <th></th>
+</tr>
+
+<p><%= link_to "プロフィール編集", edit_user_path %></p>
+
+<h1>Books</h1>
+  
+  <table>
+    <tr>
+      <th></th>
+      <th>Title</th>
+      <th>Opinion</th>
+    </tr>
+    <tr>
+      <td><%= image_tag @user.get_profile_image(100,100) %></td>
+      <td>
+        <%= link_to book_path do %>
+          <%= book.title %>
+        <% end %>
+      </td>
+      <td><%= book.body %></td>
+    </tr>
+  </table>

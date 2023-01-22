@@ -2,7 +2,14 @@
   
   <table>
     
-    <td><%= link_to current_user.name, user_path %></td>
+    <td>
+      <% if @book.user.profile_image.attached? %>
+        <%= image_tag @book.user.get_profile_image(100,100) %>
+      <% else %>
+        <%= image_tag 'no_image',resize_to_limit: [100,100] %>
+      <% end %>
+      <%= link_to current_user.name, user_path %>
+      </td>
     <td>
       <%= link_to book_path(@book.id) do %>
         <%= @book.title %>
@@ -11,6 +18,7 @@
     <td><%= @book.body %></td>
     <td>
       <% if @book.user == current_user %>
+        <%= link_to 'Edit', edit_book_path(@book.id) %>
         <%= link_to 'Destroy', book_path, method: :delete, data: {confirm: "本当に消しますか？"} %>
       <% end %>
     </td>

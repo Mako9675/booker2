@@ -15,13 +15,13 @@
       <li>
         <%= link_to 'Booker', homes_top_path %>
       </li>
-      <li>
-        <%= link_to 'Home', user_path(current_user.id) %>
-      </li>
       
     <% if user_signed_in? %>
       <li>
-      <%= link_to "User", users_path %>
+        <%= link_to 'Home', user_path(current_user.id) %>
+      </li>
+      <li>
+        <%= link_to "User", users_path %>
       </li>
       
       <li>

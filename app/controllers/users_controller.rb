@@ -17,6 +17,7 @@ class UsersController < ApplicationController
     @book.user_id = current_user.id
     @book.save
     redirect_to book_path(@book.id)
+    
   end
 
   def edit
@@ -25,17 +26,21 @@ class UsersController < ApplicationController
   
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to user_path(current_user.id)
+    if @user.update(user_params)
+      redirect_to user_path(current_user.id)
+      flash[:notice] = "You have updated user successfully."
+    else
+      render :edit
+    end
   end
   
   private
   def user_params
-    param.require(:book).permit(:name, :introduction, :image)
+    params.require(:user).permit(:name, :introduction, :profile_image)
   end
   def ensure_user
-    @users = current_user.users
-    @user = @users.find_by(id: params[:id])
+    @users = current_user.id
+    @user = User.find_by(id: params[:id])
     redirect_to user_path unless @user
   end
 end

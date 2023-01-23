@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
-  before_action :ensure_user, only: [:edit, :update, :destroy]
+  before_action :ensure_user, only: [:create, :edit, :update, :destroy]
   before_action :authenticate_user!
   
   def index
     @user = User.all
+    @book = Book.new
+    @users = User.find_by(id:current_user.id)
   end
   
   def show
@@ -14,9 +16,13 @@ class UsersController < ApplicationController
   
   def create
     @book = Book.new(book_params)
-    @book.user_id = current_user.id
-    @book.save
-    redirect_to book_path(@book.id)
+    if @book.user_id = current_user.id
+      @book.save
+      flash[:notice] = "You have created book successfully."
+      redirect_to books_path
+    else
+      render :index
+    end
     
   end
 
@@ -27,8 +33,8 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to user_path(current_user.id)
       flash[:notice] = "You have updated user successfully."
+      redirect_to user_path(current_user.id)
     else
       render :edit
     end

@@ -1,62 +1,75 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="ja">
   <head>
+    <meta charset="UTF-8" />
     <title>Booker2</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+   <link rel="stylesheet" media="all" href="/assets/stylesheets/application.css" data-turbokinks-track="reload" />
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body class="d-flex flex-column vh-100">
-    <header class="shadow-sm">
-      <li>
-        <%= link_to 'Booker', homes_top_path %>
-      </li>
-      <nav class= "navbar navbar-expand-lg navbar-light" >
-        <% if user_signed_in? %>
-        <li>
-          <%= link_to 'Home', user_path(current_user.id) %>
-        </li>
-        <li>
-          <%= link_to "User", users_path %>
-        </li>
-      
-        <li>
-         <%= link_to "Books", books_path %>
-        </li>
-      
-        <li>
-          <%= link_to "Log out", destroy_user_session_path, method: :delete %>
-        </li>
-        <% else %>
-        <li>
-          <%= link_to 'Home', users_path %>
-        </li>
-        <li>
-        <%= link_to "About", about_path %>
-        </li>
-        <li>
-        <%= link_to "Sign up", new_user_registration_path %>
-        </li>
-        <li>
-        <%= link_to "Log in", new_user_session_path %>
-        </li>
-        <% end %>
+    <header class="bg-dark">
+      <nav class= "navbar navbar-expand-lg navbar-dark bg-dark" >
+        <div class="container">
+          <a class="navbar-brand" href= "/homes/top" >Bookers</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto nav-link:hover">
+              <% if user_signed_in? %>
+              <li class="nav-item m-2">
+                <a href="/users/<%= current_user.id %>", class= 'text-white text-decoration-none' ><i class="fas fa-home"></i> Home</a>
+              </li>
+              <li class="nav-item m-2">
+                <a href="/users", class='text-white text-decoration-none'><i class="fas fa-users"></i> User</a>
+              </li>
+              <li class="nav-item m-2">
+               <a href="/books", class= 'text-white text-decoration-none' ><i class="fas fa-book-open"></i> Books</a>
+              </li>
+              <li class="nav-item m-2">
+                <%= link_to destroy_user_session_path, method: :delete, class: 'text-white text-decoration-none' do%>
+                <i class="fas fa-sign-out-alt"></i> Log out
+                <% end %>
+              </li>
+              
+              <% else %>
+              <li class="nav-item m-2">
+                 <a href="/users", class= 'text-white text-decoration-none' ><i class="fas fa-home"></i> Home</a>
+              </li>
+              <li class="nav-item m-2">
+                <a href="/homes/about", class='text-white text-decoration-none'><i class="fas fa-link"></i> About</a>
+              </li>
+              <li class="nav-item m-2">
+                <%= link_to new_user_registration_path, class: 'text-white text-decoration-none' do %>
+                <i class="fas fa-user-plus"></i> Sign up
+                <% end %>
+              </li>
+              <li class="nav-item m-2">
+                <%= link_to new_user_session_path, class: 'text-white text-decoration-none nav-link:hover' do %>
+                <i class="fas fa-sign-in-alt"></i> Log in
+                <% end %>
+              </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
       </nav>
     </header>
     
-    <main class="mb-auto">
+    <main>
       <%= flash[:notice] %>
     <%= yield %>
     </main>
     
-    <footer class="bg-dark text-white pt-5 pb-4">
+    <footer class="bg-white text-dark">
       <div class="container">
         <div class="row no-gutters">
-          <div class="col-md-4">
+          <div class="mx-auto col-md-6 text-center mt-3">
             <p>CopyRight Infratop.inc</p>
           </div>
         </div>

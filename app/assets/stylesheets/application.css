@@ -18,3 +18,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.text-white .text-decoration-none .nav-link:hover {
+  color: orange;
+}

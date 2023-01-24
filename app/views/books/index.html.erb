@@ -7,37 +7,45 @@
   </ul>
 <% end %>
 
-<%= render 'shered/userinfo' %>
+<div class= "container">
+  <div class="row">
+    <div class="col-sm-10 col-md-5 col-lg-5">
+      <%= render 'shered/userinfo' %>
 
-<%= render 'shered/NewBox', book: @book %>
-  
-  <h1>Books</h1>
-  
-  <table>
-    <tr>
-      <th></th>
-      <th>Title</th>
-      <th>Opinion</th>
-    </tr>
+      <%= render 'shered/NewBox', book: @book %>
+    </div>
     
-    <tr>
-      <% @books.each do |book| %>
-      <td>
-        <%= link_to book_path(book.id) do %>
-          <% if book.user.profile_image.attached? %>
-            <%= image_tag book.user.get_profile_image(100,100) %>
-          <% else %>
-            <%= image_tag 'no_image',resize_to_limit: [100,100] %>
+    <div class="col-sm-10 col-md-7 col-lg-7">
+      <h1>Books</h1>
+  
+        <table>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Opinion</th>
+          </tr>
+    
+          <tr>
+            <% @books.each do |book| %>
+            <td>
+              <%= link_to book_path(book.id) do %>
+                <% if book.user.profile_image.attached? %>
+                  <%= image_tag book.user.get_profile_image(100,100) %>
+                <% else %>
+                  <%= image_tag 'no_image',resize_to_limit: [100,100] %>
+                <% end %>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to book_path(book.id) do %>
+                <%= book.title %>
+              <% end %>
+            </td>
+            <td><%= book.body %></td>
+          </tr>
           <% end %>
-        <% end %>
-      </td>
-      <td>
-        <%= link_to book_path(book.id) do %>
-        <%= book.title %>
-        <% end %>
-      </td>
-      <td><%= book.body %></td>
-    </tr>
-    <% end %>
-  </table>
-  <%= paginate @books %>
+        </table>
+        <%= paginate @books %>
+    </div>
+  </div>
+</div>

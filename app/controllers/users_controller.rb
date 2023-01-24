@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   end
   
   def show
-    @user = User.find_by(id: params[:id])
+    @user = User.find_by(params[:user_id])
     @books = @user.books.page(params[:page])
     @book = Book.new
   end

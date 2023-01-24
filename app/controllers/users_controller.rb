@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     @book.user_id = current_user.id
     if @book.save
       flash[:notice] = "You have created book successfully."
-      redirect_to books_path
+      redirect_to @book
     else
       render :index, status: :unprocessable_entity
     end

@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  before_action :ensure_user, only: [:create, :edit, :update, :destroy]
   before_action :authenticate_user!
   
   def index

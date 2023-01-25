@@ -13,6 +13,12 @@ class ApplicationController < ActionController::Base
     root_path
   end
   
+  def authenticate_user
+    if @current_user == nil
+       redirect_to new_user_session_path
+    end
+  end
+  
   
   protected
   

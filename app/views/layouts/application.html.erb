@@ -15,7 +15,9 @@
     <header class="bg-dark">
       <nav class= "navbar navbar-expand-lg navbar-dark bg-dark" >
         <div class="container">
-          <a class="navbar-brand" href= "/homes/top" >Bookers</a>
+          <a class="navbar-brand" href="/">
+            <span>Bookers</span>
+          </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
           </button>
@@ -39,10 +41,10 @@
               
               <% else %>
               <li class="nav-item">
-                 <a href="/homes/top", class= 'nav-link text-light' ><i class="fas fa-home"></i> Home</a>
+                 <a href="/", class= 'nav-link text-light' ><i class="fas fa-home"></i> Home</a>
               </li>
               <li class="nav-item">
-                <a href="/homes/about", class='nav-link text-light'><i class="fas fa-link"></i> About</a>
+                <a href="/home/about", class='nav-link text-light'><i class="fas fa-link"></i> About</a>
               </li>
               <li class="nav-item">
                 <%= link_to new_user_registration_path, class: 'nav-link text-light' do %>

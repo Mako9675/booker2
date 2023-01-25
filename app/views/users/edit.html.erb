@@ -1,4 +1,5 @@
 <% if @user.errors.any? %>
+<%= @user.errors.count %> errors
   <div class = "alert">
     <ul>
       <% @user.errors.full_messages.each do |message| %>

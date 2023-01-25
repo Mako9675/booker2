@@ -11,8 +11,8 @@
   <div class="row">
     <div class="col-sm-10 col-md-3 col-lg-3">
       <h2 class="mt-4">User info</h2>
-        <% if @user.profile_image.attached? %>
-          <%= image_tag @user.get_profile_image(100,100) %>
+        <% if @book.user.profile_image.attached? %>
+          <%= image_tag @book.user.get_profile_image(100,100) %>
         <% else %>
           <%= image_tag 'no_image',resize_to_limit: [100,100] %>
         <% end %>
@@ -20,11 +20,11 @@
       <table class="table">
         <tr>
           <th>name</th>
-          <th><%= @user.name %></th>
+          <th><%= @book.user.name %></th>
         </tr>
         <tr>
           <th>introduction</th>
-          <th><%= @user.introduction %></th>
+          <th><%= @book.user.introduction %></th>
         </tr>
       </table>
       <div class= "my-4">
@@ -42,13 +42,13 @@
       <h2>Book detail</h2>
         <table class="table">
           <td style="display:block;">
-            <%= link_to user_path(@user.id) do %>
+            <%= link_to user_path(@book.user.id) do %>
               <% if @book.user.profile_image.attached? %>
                 <%= image_tag @book.user.get_profile_image(100,100) %>
               <% else %>
                 <%= image_tag 'no_image',resize_to_limit: [100,100] %>
               <% end %>
-              <%= @user.name %>
+              <%= @book.user.name %>
             <% end %>
           </td>
           <td>

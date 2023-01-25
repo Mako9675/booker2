@@ -1,3 +1,14 @@
+<% if @book.errors.any? %>
+  <%= @book.errors.count %> errors
+  <div class = "alert">
+    <ul>
+      <% @book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <div class="container">
   <div class="row">
     <div class="col-sm-11 col-md-6 mx-auto mt-3">

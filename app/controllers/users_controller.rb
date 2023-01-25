@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :is_matching_login_user, only: [:edit, :update]
   
   def index
     @user = User.all.page(params[:page])
@@ -38,13 +39,16 @@ class UsersController < ApplicationController
     end
   end
   
+  
   private
   def user_params
     params.require(:user).permit(:name, :introduction, :profile_image)
   end
-  def ensure_user
-    @users = current_user.id
-    @user = User.find_by(id: params[:id])
-    redirect_to user_path unless @user
+  
+  def is_matching_login_user
+     user_id = params[:id].to_i
+      unless user_id == current_user.id
+        redirect_to user_path(current_user.id)
+      end
   end
 end

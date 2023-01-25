@@ -39,14 +39,14 @@
     </div>
     
     <div class="col-sm-10 col-md-8 col-lg-8 mt-4 mx-auto">
-      <h1>Book detail</h1>
+      <h2>Book detail</h2>
         <table class="table">
-          <td>
+          <td style="display:block;">
             <%= link_to user_path(@user.id) do %>
               <% if @book.user.profile_image.attached? %>
-                <%= image_tag @book.user.get_profile_image(80,80) %>
+                <%= image_tag @book.user.get_profile_image(100,100) %>
               <% else %>
-                <%= image_tag 'no_image',resize_to_limit: [80,80] %>
+                <%= image_tag 'no_image',resize_to_limit: [100,100] %>
               <% end %>
               <%= @user.name %>
             <% end %>
@@ -57,10 +57,13 @@
             <% end %>
           </td>
           <td><%= @book.body %></td>
-          <td>
+        
             <% if @book.user == current_user %>
-              <%= link_to 'Edit', edit_book_path(@book.id) %>
-              <%= link_to 'Destroy', book_path, method: :delete, data: {confirm: "本当に消しますか？"} %>
+            <td>
+              <%= link_to "Edit", edit_book_path(@book.id), class: 'btn btn-success btn-x' %>
+            </td>
+            <td>
+              <%= link_to "Destroy", book_path, method: :delete, data: {confirm: "本当に消しますか？"}, class: 'btn btn-danger btn-x' %>
             <% end %>
           </td>
         </table>

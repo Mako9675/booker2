@@ -1,17 +1,9 @@
 <h2>New book</h2>
   <%= form_with model: book do |f| %>
   
-  <form>
-    <div class="form-group">
-      <label>Title</label>
-        <input type="text" class="form-control">
-    </div>
-  </form>
-  <form>
-    <div class="form-group">
-      <label>Opinion</label>
-       <textarea class="form-control" rows="2"></textarea>
-    </div>
-  </form>
-    <button class="btn btn-success" type="button">Create Book</button>
+    <p>Title</p>
+      <%= f.text_field :title %>
+    <p>Opinion</p>
+      <%= f.text_area :body %>
+    <%= f.submit 'Create Book',class: 'btn btn-success' %>
   <% end %>
